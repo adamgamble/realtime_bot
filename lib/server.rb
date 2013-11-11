@@ -25,7 +25,14 @@ module RealTimeBot
     end
 
     def route_request(connection, request)
-      connection.respond :ok, File.read("public/server.html")
+      file_name = process_filename(request)
+      connection.respond :not_found, "404 Not Found public/#{file_name}" unless File.exist?("public/#{file_name}")
+      connection.respond :ok, File.read("public/#{file_name}")
+    end
+
+    def process_filename request
+      return "index.html" if request.url == "/"
+      request.url[1..-1]
     end
 
     def route_websocket(socket)
