@@ -1,3 +1,5 @@
+require 'bundler'
+Bundler.require
 require 'celluloid/autostart'
 require_relative 'websockets_client.rb'
 require_relative 'serial_publisher.rb'
@@ -10,22 +12,22 @@ module RealTimeBot
 
     def initialize(host, port)
       info "RealTimeBot Websockets server starting on #{host}:#{port}"
-      super(host, port, nil, &method(:on_connection))
+      super(host, port, &method(:on_connection))
     end
 
     def on_connection(connection)
-      while request = connection.request
-        case request
-        when Reel::Request
-          route_request connection, request
-        when Reel::WebSocket
+      connection.each_request do |request|
+        if request.websocket?
           info "Received a WebSocket connection"
-          route_websocket request
+          handle_websocket(request.websocket)
+        else
+          info "Got request for #{request.url}"
+          handle_request(request)
         end
       end
     end
 
-    def route_request(connection, request)
+    def handle_request(request)
       file_name = process_filename(request)
       connection.respond :not_found, "404 Not Found public/#{file_name}" unless File.exist?("public/#{file_name}")
       connection.respond :ok, File.read("public/#{file_name}")
@@ -36,9 +38,8 @@ module RealTimeBot
       request.url[1..-1]
     end
 
-    def route_websocket(socket)
+    def handle_websocket(socket)
       WebsocketsClient.new(socket)
-      info "started client"
     end
   end
 end

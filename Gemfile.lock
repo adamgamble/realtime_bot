@@ -1,3 +1,15 @@
+GIT
+  remote: git://github.com/pmukerji/jruby-serialport.git
+  revision: 206b432afdc09a2434c1b5685ba2bbb1580e3e57
+  specs:
+    jruby-serialport (0.0.1-java)
+
+GIT
+  remote: git://github.com/pmukerji/ruby-serialport.git
+  revision: dca53655a0a66ae8193114631c162439b76d62e6
+  specs:
+    serialport (1.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -18,7 +30,6 @@ GEM
       http (>= 0.5.0)
       http_parser.rb (>= 0.6.0.beta.2)
       websocket_parser (>= 0.1.4)
-    serialport (1.2.3)
     timers (1.1.0)
     websocket_parser (0.1.4)
       http
@@ -29,5 +40,6 @@ PLATFORMS
 
 DEPENDENCIES
   celluloid
+  jruby-serialport!
   reel
-  serialport
+  serialport!
