@@ -1,4 +1,5 @@
 require 'celluloid/autostart'
+require 'serialport'
 
 module RealTimeBot
   class SerialPublisher
@@ -14,6 +15,7 @@ module RealTimeBot
 
     def run
       subscribe("websocket_data", :dispatch)
+      @serial = SerialPort.new("/dev/tty.usbserial", "9600".to_i)
     end
 
     def dispatch topic, message
