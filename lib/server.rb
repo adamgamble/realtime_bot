@@ -1,5 +1,6 @@
 require 'celluloid/autostart'
 require_relative 'websockets_client.rb'
+require_relative 'serial_publisher.rb'
 
 module RealTimeBot
   class Server < Reel::Server
@@ -43,4 +44,5 @@ module RealTimeBot
 end
 
 RealTimeBot::Server.supervise_as :websockets_server, '0.0.0.0', 1234
+RealTimeBot::SerialPublisher.supervise_as :serial_publisher
 sleep

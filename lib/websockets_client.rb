@@ -26,6 +26,7 @@ module RealTimeBot
 
     def dispatch(message)
       debug "Dispatching #{message.inspect}"
+      publish("websocket_data", message)
     end
   end
 end
