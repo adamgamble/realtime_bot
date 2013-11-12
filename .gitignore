@@ -8,3 +8,4 @@ tags
 npm-debug.log
 coverage
 **/.tern-port
+**/public

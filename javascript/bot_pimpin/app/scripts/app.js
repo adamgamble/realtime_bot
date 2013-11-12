@@ -18,7 +18,6 @@ define([], function () {
 
   function onOpen(evt) {
     writeToScreen("CONNECTED");
-    send("Initiating connection from client.");
   }
 
   function onClose(evt) {

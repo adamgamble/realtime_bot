@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
-        dist: '../../public'
+        dist: '../../ruby/public'
     };
 
     grunt.initConfig({
@@ -383,9 +383,9 @@ module.exports = function (grunt) {
         'cssmin',
         'responsive_images:dev',
         'concat',
-        'uglify',
+        // 'uglify',
         'copy',
-        'rev',
+        // 'rev',
         'usemin'
     ]);
 
