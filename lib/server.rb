@@ -29,8 +29,11 @@ module RealTimeBot
 
     def handle_request(request)
       file_name = process_filename(request)
-      connection.respond :not_found, "404 Not Found public/#{file_name}" unless File.exist?("public/#{file_name}")
-      connection.respond :ok, File.read("public/#{file_name}")
+      begin
+        request.respond :ok, File.read("public/#{file_name}")
+      rescue
+        request.respond :not_found, "404 Not Found public/#{file_name}"
+      end
     end
 
     def process_filename request
