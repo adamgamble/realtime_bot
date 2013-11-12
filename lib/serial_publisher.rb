@@ -31,7 +31,7 @@ module RealTimeBot
         end
       end
       begin
-        @serial = SerialPort.new("/dev/tty.usbserial-AH00S7E3", "19200".to_i)
+        @serial = SerialPort.new("/dev/ttyUSB0", "19200".to_i)
       rescue
       end
     end
