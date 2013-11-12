@@ -9,3 +9,7 @@ end
 platforms :ruby do
   gem "serialport", :git => "git://github.com/pmukerji/ruby-serialport.git"
 end
+
+group :test do
+  gem 'rspec'
+end
