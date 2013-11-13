@@ -28,7 +28,6 @@ end
 
 EventMachine.run do
   AMQP.connect(:host => '127.0.0.1') do |connection|
-    puts "Connected to AMQP broker."
     @actor = RealTimeBot::RabbitMQActor.new
 
     channel  = AMQP::Channel.new(connection)

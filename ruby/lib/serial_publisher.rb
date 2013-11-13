@@ -54,7 +54,7 @@ module RealTimeBot
       begin
         @serial = SerialPort.new(serial_port, "19200".to_i)
       rescue
-        debug "Couldn't open serial port #{serial_port}. Terminating"
+        debug "Couldn't open serial port #{serial_port}."
       end
     end
 
