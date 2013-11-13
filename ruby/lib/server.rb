@@ -49,4 +49,5 @@ end
 
 RealTimeBot::Server.supervise_as :websockets_server, '0.0.0.0', 1234
 RealTimeBot::SerialPublisher.supervise_as :serial_publisher
+require_relative 'rabbitmq_actor.rb'
 sleep

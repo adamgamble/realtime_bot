@@ -15,7 +15,7 @@ module RealTimeBot
     end
 
     def run
-      # setup_serial
+      setup_serial
       set_last_signal
       start_shutdown_timer
       subscribe("websocket_data", :dispatch)
@@ -26,8 +26,8 @@ module RealTimeBot
       begin
         left_motor, right_motor = message.split(",")
         debug "Left Value: #{left_motor} Right Value: #{right_motor}"
-        # @serial.write(left_motor.to_i.chr)
-        # @serial.write(right_motor.to_i.chr)
+        @serial.write(left_motor.to_i.chr)
+        @serial.write(right_motor.to_i.chr)
       rescue
         debug "Attempted to write values to serial port, but failed"
       end
@@ -55,7 +55,6 @@ module RealTimeBot
         @serial = SerialPort.new(serial_port, "19200".to_i)
       rescue
         debug "Couldn't open serial port #{serial_port}. Terminating"
-        terminate
       end
     end
 

@@ -13,12 +13,18 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    amq-protocol (1.8.0)
+    amqp (1.1.1)
+      amq-protocol (>= 1.8.0)
+      eventmachine
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
     diff-lcs (1.2.5)
+    eventmachine (1.0.3)
+    eventmachine (1.0.3-java)
     http (0.5.0)
       http_parser.rb
     http_parser.rb (0.6.0.beta.2)
@@ -48,6 +54,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amqp
   celluloid
   jruby-serialport!
   reel
