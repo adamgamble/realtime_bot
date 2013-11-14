@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
-        dist: '../../ruby/public/remote'
+        dist: '../../ruby/public/telekinesis'
     };
 
     grunt.initConfig({
