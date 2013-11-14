@@ -1,12 +1,18 @@
 # RealTime Bot
 
 ## Pre-requisites
-You need RabbitMQ installed.
+You need [RabbitMQ](http://www.rabbitmq.com/download.html) installed.
+
 **OSX**
 ```
 brew install rabbitmq
 ```
-___TODO___ fill out the rest of the install instructions
+
+**Ubuntu**
+```
+sudo apt-get install rabbitmq-server
+```
+
 
 ## Backend
 To run the server ...
