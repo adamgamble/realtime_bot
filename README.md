@@ -1,7 +1,8 @@
 # RealTime Bot
 
 ## Pre-requisites
-You need [RabbitMQ](http://www.rabbitmq.com/download.html) installed.
+You need [RabbitMQ](http://www.rabbitmq.com/download.html) installed and
+running.
 
 **OSX**
 ```
