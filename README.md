@@ -1,37 +1,46 @@
 # RealTime Bot
 
 ## Backend
-Navigate to ./ruby and ...
+To run the server ...
 ```
-ruby lib/server.rb
+rake server
 ```
 
-To run the tests ...
+To test the backend ...
 ```
-rspec spec/
+rake test
 ```
 
 
 ## Frontend
+To bootstrap the frontend (read, install npm and bower dependencies) ...
+```
+rake bootstrap
+```
 
 ### Telekinesis (Remote Control)
-Navigate to ./javascript/telekinesis and ...
-```
-npm install
-bower install
-grunt build
-```
 
+#### Run in production mode
 Visit http://localhost:1234/telekinesis in your browser.
 **Note:** This assumes your serial is on /dev/tty.usbserial-AH00S7E3. If it isn't change it in ./ruby/lib/serial_publisher.rb#38
 
+#### Run in development mode (e.g. you are editing code)
+Navigate to ./javascript/telekinesis and ...
+```
+grunt server
+```
+
+This will give you livereload capabilities.
+
 
 ### Omniscient (Dashboard)
+#### Run in production mode
+Visit http://localhost:1234/omniscient in your browser.
+
+#### Run in development mode (e.g. you are editing code)
 Navigate to ./javascript/omniscient and ...
 ```
-npm install
-bower install
-grunt build
+grunt server
 ```
 
-Visit http://localhost:1234/omniscient in your browser.
+This will give you livereload capabilities.

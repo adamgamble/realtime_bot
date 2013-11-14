@@ -10,9 +10,14 @@ task :bootstrap do
   sh "cd #{cwd}"
 end
 
-task :test do
-  STDOUT.puts "Running tests for backend"
+task :server do
+  STDOUT.puts "Running server for backend"
   sh "ruby ruby/lib/server.rb"
 end
 
-task :default => :test
+task :test do
+  STDOUT.puts "Running tests for backend"
+  sh "rspec ruby/spec"
+end
+
+task :default => :server
