@@ -1,5 +1,13 @@
 # RealTime Bot
 
+## Pre-requisites
+You need RabbitMQ installed.
+**OSX**
+```
+brew install rabbitmq
+```
+___TODO___ fill out the rest of the install instructions
+
 ## Backend
 To run the server ...
 ```
