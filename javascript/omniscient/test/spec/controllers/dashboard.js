@@ -1,22 +1,22 @@
 'use strict';
 
-describe('Controller: ManualoverrideCtrl', function () {
+describe('Controller: DashboardCtrl', function () {
 
   // load the controller's module
   beforeEach(module('omniscientApp'));
 
-  var ManualoverrideCtrl,
+  var dashboardCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    ManualoverrideCtrl = $controller('ManualoverrideCtrl', {
+    dashboardCtrl = $controller('DashboardCtrl', {
       $scope: scope
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should attach a title', function () {
+    expect(scope.title).toBe("Dashboard");
   });
 });

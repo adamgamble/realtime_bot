@@ -40,7 +40,7 @@ npm install
 bower install
 ```
 
-### Telekinesis (Remote Control)
+### (DEPRECATED) Telekinesis (Remote Control)
 
 #### Run in production mode
 Visit http://localhost:1234/telekinesis in your browser.
@@ -66,3 +66,13 @@ grunt server
 ```
 
 This will give you livereload capabilities.
+
+## To test in style
+
+If you want to follow our preferred testing style (run your tests after you make changes from within vim), then you need to do two things:
+
+- Ensure `karma start` is running
+- Enable per-project vimrc (https://github.com/knewter/dotfiles/commit/1d8947d72354bf614c9ebe7fc3bddd5c2fe9642b)
+- Hit <leader>t when you want to run the tests (this will run whatever tests the currently started karma server is configured to look for)
+
+Now you're testing in style!

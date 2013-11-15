@@ -1,16 +1,20 @@
-// Karma configuration
-// http://karma-runner.github.io/0.10/config/configuration-file.html
-
 module.exports = function(config) {
   config.set({
-    // base path, that will be used to resolve files and exclude
     basePath: '',
+    exclude: [],
+    port: 8080,
+    runnerPort: 9100,
+    colors: true,
+    autoWatch: true,
+    logLevel: config.LOG_INFO,
+    browsers: ['Chrome'],
+    captureTimeout: 5000,
+    singleRun: false,
 
-    // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
-
-    // list of files / patterns to load in the browser
     files: [
+      'app/bower_components/jquery/jquery.js',
+      'app/bower_components/underscore/underscore.js',
+      'app/bower_components/d3/d3.js',
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js',
@@ -20,37 +24,41 @@ module.exports = function(config) {
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*.js',
+      // include the templates directory
+      'app/templates/*.html'
     ],
 
-    // list of files / patterns to exclude
-    exclude: [],
+    preprocessors: {
+      // generate js files from html templates to expose them during testing.
+      'app/templates/*.html': ['ng-html2js'],
+      'app/scripts/{controllers/*,directives/*,models/*,services/*, *}.js': ['coverage']
+    },
 
-    // web server port
-    port: 8080,
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/'
+    },
 
-    // level of logging
-    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    plugins: [
+      "karma-jasmine",
+      "karma-chrome-launcher",
+      "karma-phantomjs-launcher",
+      "karma-ng-html2js-preprocessor",
+      "karma-coverage"
+    ],
 
+    frameworks: [
+      'jasmine',
+    ],
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'app/',
 
-
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: false
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('foo')
+      moduleName: 'templates'
+    }
   });
 };

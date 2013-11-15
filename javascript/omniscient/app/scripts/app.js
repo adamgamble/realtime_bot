@@ -20,4 +20,5 @@ angular.module('omniscientApp', [
       .otherwise({
         redirectTo: '/'
       });
-  }]);
+  }])
+  .value("constants", {websocketUri: "ws://" + document.domain + ":1234"});

@@ -14,9 +14,3 @@ end
 group :test do
   gem 'rspec'
 end
-
-# Needed only for the frontend applications
-gem 'compass'
-gem 'zurb-foundation', '~> 3.2.5'
-gem 'sass'
-gem 'sass-css-importer', '1.0.0.beta.0'

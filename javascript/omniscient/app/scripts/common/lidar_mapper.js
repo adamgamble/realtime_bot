@@ -87,7 +87,7 @@ var LidarMapper = {
         .append("g")
         .attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
 
-    /* radial segments */
+    /* radial (bullseye) segments */
     for(var j=0; j<cfg.levels-1; j++){
       var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
       g.selectAll(".levels")
@@ -100,7 +100,7 @@ var LidarMapper = {
       .attr("y2", function(d, i){return levelFactor*(1-cfg.factor*Math.cos((i+1)*cfg.radians/total));})
       .attr("class", "line")
       .style("stroke", "white")
-      .style("stroke-opacity", "0.4")
+      .style("stroke-opacity", "0.5")
       .style("stroke-width", "0.3px")
       .attr("transform", "translate(" + (cfg.w/2-levelFactor) + ", " + (cfg.h/2-levelFactor) + ")");
     }
