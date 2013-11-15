@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('omniscientApp')
-  .directive('lidarMap', function () {
+  .directive('lidarMap', ['$window', function ($window) {
     return {
       template: '<div id="lidar-map" class="lidar-map"></div>',
       restrict: 'E',
@@ -35,6 +35,12 @@ angular.module('omniscientApp')
 
         LidarMapper.draw("#lidar-map", d, mycfg);
         // LidarMapper.createLegend(angular.element(element)[0], legendOptions, h, w, colorscale, title);
+
+        // var randomPoints = [];
+        // $window.setInterval(function() {
+        //   randomPoints = _.shuffle(lidarData.points);
+        //   LidarMapper.draw("#lidar-map", [randomPoints], mycfg);
+        // }, 1000);
       }
     };
-  });
+  }]);

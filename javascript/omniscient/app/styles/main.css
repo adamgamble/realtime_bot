@@ -25,14 +25,13 @@ lidar-map {
   text-align:center;
   width:auto;
 }
-polygon.lidar-mapper-series0 {
+polygon.lidar-mapper-series-0 {
   fill: rgba(255,255,255, .3) !important;
   stroke: rgba(255,255,255, .5) !important;
 }
 
-circle.lidar-mapper-series0 {
+circle.lidar-mapper-series-0 {
   fill: rgba(255,255,255, .3) !important;
-  /* stroke: rgba(255,255,255, .5) !important; */
 }
 
 section .pure-u-1-2:nth-of-type(even) {
