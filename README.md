@@ -33,6 +33,13 @@ To bootstrap the frontend (read, install npm and bower dependencies) ...
 rake bootstrap
 ```
 
+If you ever see complaints about a dependency being missing for npm or bower,
+just manually run:
+```
+npm install
+bower install
+```
+
 ### Telekinesis (Remote Control)
 
 #### Run in production mode

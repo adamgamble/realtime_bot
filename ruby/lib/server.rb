@@ -30,7 +30,7 @@ module RealTimeBot
     def handle_request(request)
       file_name = process_filename(request)
       begin
-        request.respond :ok, File.read("public/#{file_name}")
+        request.respond :ok, File.read("public/**/#{file_name}")
       rescue
         request.respond :not_found, "404 Not Found public/#{file_name}"
       end

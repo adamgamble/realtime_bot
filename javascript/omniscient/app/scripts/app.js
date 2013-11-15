@@ -6,13 +6,18 @@ angular.module('omniscientApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .config(function ($routeProvider) {
+  .config(['$locationProvider', '$routeProvider', '$httpProvider', function ($locationProvider, $routeProvider, $httpProvider) {
+    $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl'
+      })
+      .when('/override', {
+        templateUrl: 'views/manual_override.html',
+        controller: 'ManualOverrideCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
