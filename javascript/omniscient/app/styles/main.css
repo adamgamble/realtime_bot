@@ -11,9 +11,15 @@ header.header {
   margin:2em auto;
   /* max-width:62.5em; */
 }
+.stats {
+  max-width:62.5em;
+  text-align:center;
+  margin:0 auto;
+}
 .lidar {
   padding:2em 0 0;
   background:transparent url('/images/lidar_bg_pattern.png') repeat 0 0;
+  max-width:100%;
 }
 lidar-map {
   text-align:center;
@@ -29,14 +35,16 @@ circle.lidar-mapper-series0 {
   /* stroke: rgba(255,255,255, .5) !important; */
 }
 
-
-section .pure-u-1-2:nth-of-type(odd) .l-box {
-  padding-left:1em;
-}
 section .pure-u-1-2:nth-of-type(even) {
-  text-align:right;
+  text-align:left;
 }
 section .pure-u-1-2:nth-of-type(even) .l-box {
+  padding-left:1em;
+}
+section .pure-u-1-2:nth-of-type(odd) {
+  text-align:right;
+}
+section .pure-u-1-2:nth-of-type(odd) .l-box {
   padding-right:1em;
 }
 
