@@ -49,5 +49,10 @@ end
 
 RealTimeBot::Server.supervise_as :websockets_server, '0.0.0.0', 1234
 RealTimeBot::SerialPublisher.supervise_as :serial_publisher
-require_relative 'rabbitmq_actor.rb'
+
+require_relative 'rabbitmq_actor'
+rabbitmq_host = "192.168.1.64"
+rabbitmq_topics = %w(amqpgem.examples.helloworld protox2d.1)
+RealTimeBot::RabbitMQActor.subscribe_em rabbitmq_host, rabbitmq_topics
+
 sleep

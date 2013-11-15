@@ -37,6 +37,11 @@ angular.module('omniscientApp')
         updateMap();
 
         $scope.$on("inbound:lidar", function(evt, data) {
+          $scope.data = {
+            "id": "A1",
+            "rpm": 274,
+            "points": data.points
+          };
         });
 
         // demo to ensure outbound traffic works

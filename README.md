@@ -5,23 +5,33 @@ You need [RabbitMQ](http://www.rabbitmq.com/download.html) installed and
 running.
 
 **OSX**
+
 ```
 brew install rabbitmq
 ```
 
 **Ubuntu**
+
 ```
 sudo apt-get install rabbitmq-server
+```
+
+You also need [Yeoman](http://yeoman.io) installed:
+
+```
+npm install -g yo
 ```
 
 
 ## Backend
 To run the server ...
+
 ```
 rake server
 ```
 
 To test the backend ...
+
 ```
 rake test
 ```
@@ -29,12 +39,14 @@ rake test
 
 ## Frontend
 To bootstrap the frontend (read, install npm and bower dependencies) ...
+
 ```
 rake bootstrap
 ```
 
 If you ever see complaints about a dependency being missing for npm or bower,
 just manually run:
+
 ```
 npm install
 bower install
@@ -48,6 +60,7 @@ Visit http://localhost:1234/telekinesis in your browser.
 
 #### Run in development mode (e.g. you are editing code)
 Navigate to ./javascript/telekinesis and ...
+
 ```
 grunt server
 ```
@@ -61,6 +74,7 @@ Visit http://localhost:1234/omniscient in your browser.
 
 #### Run in development mode (e.g. you are editing code)
 Navigate to ./javascript/omniscient and ...
+
 ```
 grunt server
 ```

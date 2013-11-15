@@ -8,6 +8,7 @@ angular.module('omniscientApp')
       start: function(scope, websocketUrl) {
         var socket = new WebSocket(websocketUrl);
         socket.onmessage = function(message){
+          console.log(message);
           scope.$broadcast(topicName, angular.fromJson(message.data));
         };
 

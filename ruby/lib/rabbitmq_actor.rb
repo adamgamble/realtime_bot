@@ -20,21 +20,28 @@ module RealTimeBot
     end
 
     def send_message channel, message
+      info "message on channel: #{channel} ---"
       info message
       publish("rabbitmq", message)
     end
-  end
-end
 
-EventMachine.run do
-  AMQP.connect(:host => '127.0.0.1') do |connection|
-    @actor = RealTimeBot::RabbitMQActor.new
+    def self.subscribe_em host, topics
+      EventMachine.run do
+        AMQP.connect(:host => host) do |connection|
+          @actor = RealTimeBot::RabbitMQActor.new
 
-    channel  = AMQP::Channel.new(connection)
+          channel  = AMQP::Channel.new(connection)
+          exchange = channel.topic("astroid_data_feed", auto_delete: true)
 
-    channel.queue("amqpgem.examples.helloworld", :auto_delete => true).subscribe do |payload|
-      puts "Received a message: #{payload}. Disconnecting..."
-      @actor.send_message nil, payload
+          topics.each do |topic|
+            STDOUT.puts "Binding for #{topic}"
+            channel.queue("").bind(exchange, routing_key: topic).subscribe do |metadata, payload|
+              STDOUT.puts "Received a message on topic #{topic}: #{payload}. Disconnecting..."
+              @actor.send_message topic, payload
+            end
+          end
+        end
+      end
     end
   end
 end
