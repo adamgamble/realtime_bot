@@ -33,12 +33,12 @@
       <a class="pure-menu-heading" href="/">Omniscient</a>
       <ul>
         <li class="pure-menu-selected"><a href="/">Dashboard</a></li>
-        <li><a href="/override">Manual Override</a></li>
+        <li><a href="#/override">Manual Override</a></li>
       </ul>
     </div>
   </header>
 
-  <div class="container content" ng-view=""></div>
+  <div class="container content ng-cloak" ng-view="" ng-cloak=""></div>
 
   <footer class="footer">
     2013 &copy; an isotope11 / affa labs production.
@@ -51,6 +51,7 @@
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
   <script src="bower_components/d3/d3.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
   <!-- endbuild -->
@@ -62,6 +63,7 @@
   <script src="scripts/controllers/dashboard.js"></script>
   <script src="scripts/controllers/manual_override.js"></script>
   <script src="scripts/directives/lidar_map.js"></script>
+  <script src="scripts/directives/remote_control.js"></script>
   <!-- endbuild -->
 </body>
 </html>

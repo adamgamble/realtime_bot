@@ -1,0 +1,12 @@
+<div class="m-remote-control">
+  <h6 data-ng-show="!socketDisabled">{{controlLeft}}, {{controlRight}}</h6>
+  <article id="topcoat-rangeinput" class="component">
+    <form>
+      <section class="component">
+        <input type='range' data-ng-disabled="socketDisabled" class='topcoat-range-input--vertical' data-ng-model="controlLeft" id="controlLeft" name="controlLeft" min="1" max="127">
+        <input type='range' data-ng-disabled="socketDisabled" class='topcoat-range-input--vertical' data-ng-model="controlRight" id="controlRight" name="controlRight" min="128" max="255">
+      </section>
+    </form>
+  </article>
+  <pre></pre>
+</div>

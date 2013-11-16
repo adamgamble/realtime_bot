@@ -4,10 +4,11 @@ angular.module('omniscientApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ngTouch'
 ])
   .config(['$locationProvider', '$routeProvider', '$httpProvider', function ($locationProvider, $routeProvider, $httpProvider) {
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(false);
     $routeProvider
       .when('/', {
         templateUrl: 'views/dashboard.html',
@@ -21,4 +22,11 @@ angular.module('omniscientApp', [
         redirectTo: '/'
       });
   }])
-  .value("constants", {websocketUri: "ws://" + document.domain + ":1234"});
+  .run(['$rootScope', '$websocketService', function ($rootScope, $websocketService) {
+    // $websocketService.start($scope, constants.websocketUri);
+    var websocketUri = "ws://" + document.domain + ":1234";
+    $websocketService.start($rootScope, websocketUri)
+  }])
+  .value("constants", {
+    websocketUri: "ws://" + document.domain + ":1234"
+  });
