@@ -1,16 +1,20 @@
 lidar-map {
-  display:inline-block;
+  display:block;
   text-align:center;
   margin:0 auto;
   h4 {
     color: rgba(shade($heading-color, 30), .7);
-    margin:2em 0 0;
     font-weight:normal;
+    margin:0;
     @include text-shadow(0 0 1px $heading-color,  0 1px 1px rgba(255,255,255,.2));
     font-size:1.4em;
   }
   figure {
     margin-top:-2em;
+    svg {
+      max-width:500px !important;
+      max-height:500px !important;
+    }
   }
 }
 

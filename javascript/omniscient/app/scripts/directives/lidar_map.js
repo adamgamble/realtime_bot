@@ -9,7 +9,9 @@ angular.module('omniscientApp')
         data: '=lidarData'
       },
       link: function postLink($scope, element, attrs) {
-        var w = 500, h = 500;
+        var w = 500;
+        var h = 500;
+
         $scope.data = {
           "id": "A1",
           "rpm": 274,

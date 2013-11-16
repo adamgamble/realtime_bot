@@ -1,57 +1,9 @@
 var LidarMapper = {
-  createLegend: function(el, options, h, w, colorscale, title) {
-    var svg = d3.select(el)
-      .selectAll('svg')
-      .append('svg')
-      .attr("width", w+300)
-      .attr("height", h)
-
-    //create the title for the legend
-    var text = svg.append("text")
-      .attr("class", "title")
-      .attr('transform', 'translate(90,0)') 
-      .attr("x", w / 2)
-      .attr("y", 10)
-      .attr("font-size", "14px")
-      .attr("fill", "#fff")
-      .text(options[0]);
-
-    //init legend	
-    var legend = svg.append("g")
-      .attr("class", "legend")
-      .attr("height", 100)
-      .attr("width", 200)
-      .attr("x", w / 2)
-      .attr("y", function(d, i){ return i * 20;})
-      .attr('transform', 'translate(90,20)');
-
-      //create color squares
-      legend.selectAll('rect')
-        .data(options)
-        .enter()
-        .append("rect")
-        .attr("x", w - 65)
-        .attr("y", function(d, i){ return i * 20;})
-        .attr("width", 10)
-        .attr("height", 10)
-        .style("fill", function(d, i){ return colorscale(i);});
-
-      //create text next to squares
-      legend.selectAll('text')
-        .data(options)
-        .enter()
-        .append("text")
-        .attr("x", w - 52)
-        .attr("y", function(d, i){ return i * 20 + 9;})
-        .attr("font-size", "14px")
-        .attr("fill", "#737373")
-        .text(function(d) { return d; });
-  },
   draw: function(id, d, options) {
     var cfg = {
       radius: 5,
-      w: 600,
-      h: 600,
+      w: $(id).width(),
+      h: $(id).height(),
       factor: 1,
       factorLegend: .85,
       levels: 3,
@@ -59,10 +11,8 @@ var LidarMapper = {
       radians: 2 * Math.PI,
       opacityArea: 0.5,
       ToRight: 5,
-      TranslateX: 80,
-      TranslateY: 30,
-      ExtraWidthX: 100,
-      ExtraWidthY: 100,
+      TranslateX: 0,
+      TranslateY: 0,
       color: d3.scale.category10()
     };
     
@@ -79,11 +29,15 @@ var LidarMapper = {
     var radius = cfg.factor*Math.min(cfg.w/2, cfg.h/2);
     var Format = d3.format('%');
     d3.select(id).select("svg").remove();
+
+    console.log("cfg.w/h", cfg.w, cfg.h);
     
     var g = d3.select(id)
         .append("svg")
-        .attr("width", cfg.w+cfg.extraWidthX)
-        .attr("height", cfg.h+cfg.ExtraWidthY)
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr('viewBox', '0 0 ' + Math.min(cfg.w, cfg.h) + ' ' + Math.min(cfg.w, cfg.h))
+        .attr('preserveAspectRatio', 'xMinYMin')
         .append("g")
         .attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
 
