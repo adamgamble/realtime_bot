@@ -11,11 +11,14 @@
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="bower_components/pure/pure.css">
-  <!-- <link rel="stylesheet" href="bower_components/topcoat/css/topcoat-mobile-light.css"> -->
   <!-- endbuild -->
+  <!-- build:css styles/pure.css -->
+  <link rel="stylesheet" href="bower_components/pure/pure.css">
+  <!-- endbuild -->
+
 </head>
 <body ng-app="omniscientApp">
   <!--[if lt IE 7]>
@@ -32,7 +35,8 @@
     <div class="pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
       <a class="pure-menu-heading" href="/">Omniscient</a>
       <ul>
-        <li class="pure-menu-selected"><a href="/">Dashboard</a></li>
+        <!-- <li class="pure-menu-selected"><a href="#/">Dashboard</a></li> -->
+        <li><a href="#/">Dashboard</a></li>
         <li><a href="#/override">Manual Override</a></li>
       </ul>
     </div>

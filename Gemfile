@@ -3,6 +3,7 @@ source "http://rubygems.org"
 gem 'reel'
 gem 'celluloid'
 gem 'amqp'
+gem 'pry'
 platforms :jruby do
   gem "jruby-serialport", :git => "git://github.com/pmukerji/jruby-serialport.git"
 end
