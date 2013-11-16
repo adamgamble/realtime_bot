@@ -18,21 +18,19 @@ angular.module('omniscientApp')
         console.log("socket closed...");
         scope.$broadcast("socketAvailable", false);
         scope.socketAvailable = false;
-        // openInterval = $window.setInterval(function() {
-        //   console.log("attempting to reconnect...");
-        //   // TODO: reconnect when needed
-        //   // reconnect(scope, websocketUri, socket);
-        // }, 1000);
       };
       socket.onmessage = function(message){
         scope.$broadcast(topicName, angular.fromJson(message.data));
       };
 
       scope.$on("outbound", function(evt, data) {
-        socket.send(data);
+        if(socket.readyState === 1) {
+          socket.send(data);
+        }
       });
     };
 
+    // pending
     function reconnect(scope, websocketUri, socket) {
       if(socket.readyState !== 0 || socket.readyState !== 1) {
         start(scope, websocketUri);

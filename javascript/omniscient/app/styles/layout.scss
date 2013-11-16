@@ -1,9 +1,11 @@
 body {
   margin:0 auto;
 }
+
 .content.container {
   margin:4.65em auto;
 }
+
 .lidar {
   background:transparent url('/images/lidar_bg_pattern.png') repeat 0 0;
   max-width:100%;
@@ -11,13 +13,41 @@ body {
   @include box-shadow(inset 0 0 75px rgba(0,0,0,.2));
   padding:3em 0;
 }
+
+.remote {
+  i {
+    font-size:3em;
+    color:#ddd;
+  }
+  h3 {
+    font-weight:normal;
+    text-transform:uppercase;
+    letter-spacing:1.25px;
+    font-size:100%;
+    color:tint(green, 50);
+    margin:0 0 2em;
+    &.disabled {
+      color:tint(red, 50);
+    }
+  }
+
+  max-width:40em;
+  margin:0 auto;
+  text-align:center;
+  padding:3em 0 0;
+}
+
 .stats {
   max-width:40em;
   text-align:center;
   margin:0 auto;
   padding:2em 0;
   article {
-    margin-bottom:2em;
+    margin-bottom:3em;
+    i {
+      font-size:3em;
+      color:#ddd;
+    }
     h3 {
       font-weight:normal;
       text-transform:uppercase;
@@ -34,8 +64,6 @@ body {
       color:#666;
       margin:0 1.5em;
       padding:1em;
-      p {
-      }
     }
   }
 }

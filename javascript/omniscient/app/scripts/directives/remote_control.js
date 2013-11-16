@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('omniscientApp')
-  .directive('remoteControl', ['$rootScope', function ($rootScope) {
+  .directive('remoteControl', ['$rootScope', '$window', function ($rootScope, $window) {
     return {
       templateUrl: 'templates/remote_control.html',
       restrict: 'E',
@@ -10,7 +10,10 @@ angular.module('omniscientApp')
       },
       link: function postLink($scope, element, attrs) {
         $scope.socketDisabled = true;
-        angular.element("h4", element.parent()).text("Manual Override Unavailable");
+        angular.element("h4", element.parent()).text("Unavailable").addClass("disabled");
+
+        var $left = angular.element("#controlLeft", element);
+        var $right = angular.element("#controlRight", element);
 
         // start in idle 'mode'
         $scope.controlLeft = "64";
@@ -18,22 +21,18 @@ angular.module('omniscientApp')
 
         var commenceDisabling = function(socketAvailable) {
           if(socketAvailable) {
-            angular.element("h4", element.parent()).text("Commence Manual Override");
+            angular.element("h3", element.parent()).removeClass("disabled").text("Override Activated");
             $scope.socketDisabled = false;
           } else {
-            angular.element("h4", element.parent()).text("Manual Override Unavailable");
+            angular.element("h3", element.parent()).addClass("disabled").text("Unavailable");
             $scope.socketDisabled = true;
           }
         };
 
-        // swipe events
-        // TODO: verify swipe events work, get start/stop events working
-        angular.element("#controlLeft", element).bind("swipe", function(evt) {
-          angular.element("pre", element).text("controlLeft swiping");
-        });
-        angular.element("#controlRight", element).bind("swipe", function(evt) {
-          angular.element("pre", element).text("controlRight swiping");
-        });
+        var commencePublishing = function(evt) {
+          $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
+          evt.preventDefault();
+        };
 
         // alert of unavailable socket
         $scope.$on("socketAvailable", function(evt, socketAvailable) {
@@ -43,99 +42,34 @@ angular.module('omniscientApp')
           commenceDisabling(newValue);
         });
 
-        // send right and left control values
-        $scope.$watch("controlLeft", function(newValue, oldValue) {
-          if(newValue !== oldValue) {
-            $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
-          }
+        // handle touch/mouse changing events
+        $left.on("touchstart change touchmove", function(evt) {
+          commencePublishing(evt);
         });
-        $scope.$watch("controlRight", function(newValue, oldValue) {
-          if(newValue !== oldValue) {
-            $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
-          }
+        $right.on("touchstart change touchmove", function(evt) {
+          commencePublishing(evt);
         });
 
-        // var getPointerEvent = function(event) {
-        //   // can give you the event type
-        //   return event.originalEvent.targetTouches ? event.originalEvent.targetTouches[0] : event;
-        // };
+        // handle mouseup event (done with click and slide)
+        $left.on("mouseup touchend touchleave touchcancel", function(evt) {
+          //TODO is $apply still needed?
+          $scope.$apply(function() {
+            $scope.controlLeft = 64;
+            $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
+          });
+        });
+        $right.on("mouseup touchend touchleave touchcancel", function(evt) {
+          //TODO is $apply still needed?
+          $scope.$apply(function() {
+            $scope.controlRight = 192;
+            $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
+          });
+        });
 
-        // // handle mouse changing events
-        // // TODO: add touch events
-        // $left.on("touchstart change touchmove", function(evt) {
-        //   evt.preventDefault();
-        //   lv = evt.target.value;
-        //   rv = $right.val();
-
-        //   app.send(lv + "," + rv);
-        //   $out.text(lv + ", " + rv);
-        // });
-        // $right.on("touchstart change touchmove", function(evt) {
-        //   evt.preventDefault();
-        //   rv = evt.target.value;
-        //   lv = $left.val();
-
-        //   app.send(lv + "," + rv);
-        //   $out.text(lv + ", " + rv);
-        // });
-
-        // // handle mouseup event (done with click and slide)
-        // $left.on("mouseup keyup touchend touchleave touchcancel", function(evt) {
-        //   $left.val(64);
-        //   lv = $left.val();
-        //   rv = $right.val();
-
-        //   app.send(lv + "," + rv);
-        //   $out.text(lv + ", " + rv);
-        // });
-        // $right.on("mouseup keyup touchend touchleave touchcancel", function(evt) {
-        //   lv = $left.val();
-        //   $right.val(192);
-        //   rv = $right.val();
-
-        //   app.send(lv + "," + rv);
-        //   $out.text(lv + ", " + rv);
-        // });
-
-        // $(document).on("keydown", function(evt) {
-        //   switch(evt.keyCode) {
-        //     case 70: //left up
-        //       if(lv > 0 && gv < 128) {
-        //         lv = Number(gv) + 1;
-        //       }
-        //       $left.val(lv);
-        //       break;
-        //     case 82: //left down
-        //       if(lv > 0 && gv < 128) {
-        //         lv = Number(gv) - 1;
-        //       }
-        //       $left.val(lv);
-        //       break;
-        //     case 74: //right up
-        //       if(rv > 127 && tv < 256) {
-        //         rv = Number(tv) + 1;
-        //       }
-        //       $right.val(rv);
-        //       break;
-        //     case 85: //right down
-        //       if(rv > 127 && tv < 256) {
-        //         rv = Number(tv) - 1;
-        //       }
-        //       $right.val(rv);
-        //       break;
-        //     default:
-        //       break;
-        //   }
-        //   app.send(lv + "," + rv);
-        //   $out.text(lv + ", " + rv);
-        // });
-
-        // // keep sending current range values
-        // window.setInterval(function() {
-        //   lv = $left.val();
-        //   rv = $right.val();
-        //   app.send(lv + "," + rv);
-        // }, 250);
+        // keep sending current range values
+        $window.setInterval(function() {
+          // $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
+        }, 250);
       }
     };
   }]);

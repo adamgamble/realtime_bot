@@ -1,5 +1,4 @@
-<div class="m-remote-control">
-  <h6 data-ng-show="!socketDisabled">{{controlLeft}}, {{controlRight}}</h6>
+<div class="m-remote-control" data-ng-class="{disabled: socketDisabled}">
   <article id="topcoat-rangeinput" class="component">
     <form>
       <section class="component">
@@ -8,5 +7,5 @@
       </section>
     </form>
   </article>
-  <pre></pre>
+  <h6 data-ng-hide="socketDisabled">{{controlLeft}}, {{controlRight}}</h6>
 </div>
