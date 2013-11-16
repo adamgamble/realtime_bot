@@ -1,9 +1,3 @@
-.lidar {
-  background:transparent url('/images/lidar_bg_pattern.png') repeat 0 0;
-  max-width:100%;
-  text-align:center;
-  @include box-shadow(inset 0 0 75px rgba(0,0,0,.2));
-}
 lidar-map {
   display:inline-block;
   text-align:center;
@@ -11,8 +5,9 @@ lidar-map {
   h4 {
     color: rgba(shade($heading-color, 30), .7);
     margin:2em 0 0;
+    font-weight:normal;
     @include text-shadow(0 0 1px $heading-color,  0 1px 1px rgba(255,255,255,.2));
-    font-size:1.2em;
+    font-size:1.4em;
   }
   figure {
     margin-top:-2em;

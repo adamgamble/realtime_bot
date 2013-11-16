@@ -22,7 +22,7 @@ angular.module('omniscientApp')
           }
         });
 
-        $scope.options = $scope.data.id + " (" + $scope.data.rpm + "rpm) ";
+        $scope.options = $scope.data.id + " - " + $scope.data.rpm + " RPM";
 
         //actual points to be plotted on the lidar map
         var d = [ $scope.data.points ];

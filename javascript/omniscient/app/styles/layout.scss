@@ -4,8 +4,37 @@ body {
 .content.container {
   margin:4.65em auto;
 }
+.lidar {
+  background:transparent url('/images/lidar_bg_pattern.png') repeat 0 0;
+  max-width:100%;
+  text-align:center;
+  @include box-shadow(inset 0 0 75px rgba(0,0,0,.2));
+}
 .stats {
-  max-width:62.5em;
+  max-width:40em;
   text-align:center;
   margin:0 auto;
+  padding:2em 0;
+  article {
+    margin-bottom:2em;
+    h3 {
+      font-weight:normal;
+      text-transform:uppercase;
+      letter-spacing:1.25px;
+      font-size:100%;
+      color:#555;
+      margin:0 0 .5em;
+    }
+    aside {
+      border:1px solid #dfdfdf;
+      border-top-width:4px;
+      @include border-radius(3px);
+      background:#eee;
+      color:#666;
+      margin:0 1.5em;
+      padding:1em;
+      p {
+      }
+    }
+  }
 }
