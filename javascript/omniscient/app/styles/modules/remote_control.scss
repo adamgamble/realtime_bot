@@ -2,6 +2,7 @@
   max-width:40em;
   margin:0 auto;
   text-align:center;
+  padding:2em 0 0;
 }
 remote-control {
   display:inline-block;
@@ -31,6 +32,8 @@ remote-control {
 h4 {
   margin:2em 0 0;
   color: #aaa;
+  font-weight:normal;
+  text-transform:uppercase;
   @include text-shadow(0 0 1px #fff,  0 2px 1px rgba(255,255,255,.2));
   font-size:1.2em;
   padding:0;
