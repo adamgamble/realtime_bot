@@ -18,6 +18,10 @@ body {
 }
 
 .remote {
+  max-width:40em;
+  margin:0 auto;
+  text-align:center;
+  padding:3em 0;
   i {
     font-size:3em;
     color:#ddd;
@@ -33,11 +37,6 @@ body {
       color:tint(red, 50);
     }
   }
-
-  max-width:40em;
-  margin:0 auto;
-  text-align:center;
-  padding:3em 0 0;
 }
 
 .stats {
