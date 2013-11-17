@@ -2,6 +2,7 @@ lidar-map {
   display:block;
   text-align:center;
   margin:0 auto;
+  overflow:hidden;
   h4 {
     color: rgba(shade($heading-color, 30), .7);
     font-weight:normal;

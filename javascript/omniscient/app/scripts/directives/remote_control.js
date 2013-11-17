@@ -31,7 +31,7 @@ angular.module('omniscientApp')
 
         var commencePublishing = function(evt) {
           $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
-          evt.preventDefault();
+          // evt.preventDefault();
         };
 
         // alert of unavailable socket
@@ -42,15 +42,26 @@ angular.module('omniscientApp')
           commenceDisabling(newValue);
         });
 
-        // handle touch/mouse changing events
-        $left.on("touchstart change touchmove", function(evt) {
-          commencePublishing(evt);
+        // send right and left control values
+        $scope.$watch("controlLeft", function(newValue, oldValue) {
+          if(newValue !== oldValue) {
+            $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
+          }
         });
-        $right.on("touchstart change touchmove", function(evt) {
-          commencePublishing(evt);
+        $scope.$watch("controlRight", function(newValue, oldValue) {
+          if(newValue !== oldValue) {
+            $scope.$emit("outbound", $scope.controlLeft + "," + $scope.controlRight);
+          }
         });
 
-        // handle mouseup event (done with click and slide)
+        // $left.on("touchstart change touchmove", function(evt) {
+        //   commencePublishing(evt);
+        // });
+        // $right.on("touchstart change touchmove", function(evt) {
+        //   commencePublishing(evt);
+        // });
+
+        // handle mouseup/touchend event (done with click and slide)
         $left.on("mouseup touchend touchleave touchcancel", function(evt) {
           //TODO is $apply still needed?
           $scope.$apply(function() {

@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         tasks: ['copy:styles', 'autoprefixer']
       },
       compass: {
-          files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+          files: [ '<%= yeoman.app %>/styles/{,*/}*.{scss,sass}' ],
           tasks: ['compass:server', 'compass reload']
       },
       livereload: {
@@ -143,11 +143,11 @@ module.exports = function (grunt) {
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
-        /*fontsDir: '<%= yeoman.app %>/styles/fonts',*/
+        fontsDir: '<%= yeoman.app %>/fonts',
         importPath: '<%= yeoman.app %>/bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
+        httpFontsPath: '<%= yeoman.app %>/fonts',
         relativeAssets: false
       },
       dist: {},
@@ -157,11 +157,13 @@ module.exports = function (grunt) {
         }
       }
     },
+
     // not used since Uglify task does concat,
     // but still available if needed
     /*concat: {
       dist: {}
     },*/
+
     rev: {
       dist: {
         files: {
@@ -255,6 +257,8 @@ module.exports = function (grunt) {
             'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
             'fonts/*'
+            // 'styles/fonts/{,*/}*.*',
+            // 'bower_components/**/*.{ttf,otf,woff,eot,svg}'
           ]
         }, {
           expand: true,
@@ -262,6 +266,15 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/images',
           src: [
             'generated/*'
+          ]
+        }, {
+          expand: true,
+          dot: true,
+          flatten: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>/fonts',
+          src: [
+            'bower_components/ionicons/fonts/*.{ttf,otf,woff,eot,svg}',
           ]
         }]
       },
@@ -275,7 +288,8 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
-        'compass:server'
+        'compass:server',
+        'compass reload'
       ],
       test: [
         'coffee',
@@ -284,6 +298,8 @@ module.exports = function (grunt) {
       dist: [
         'coffee',
         'compass:dist',
+        'compass reload',
+        'copy:dist',
         'imagemin',
         'svgmin',
         'htmlmin'
