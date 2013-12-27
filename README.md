@@ -32,11 +32,6 @@ To test the backend ...
 rake test
 ```
 
-Messages sent to front-end websocket follow this paradigm: `{ channel: "topic", data: [] }`
-
-E.g. `{ channel: "lidar", data: [] }`
-
-
 ## Frontend
 To bootstrap the frontend (read, install npm and bower dependencies) ...
 
