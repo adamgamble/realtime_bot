@@ -65,21 +65,6 @@ var LidarMapper = {
         .append("g")
         .attr("class", "axis");
 
-    /* shows the plot value at end of point */
-    // axis.append("text")
-    // 	.attr("class", "legend")
-    // 	.text(function(d){return d})
-    // 	.style("font-family", "sans-serif")
-    // 	.style("font-size", "11px")
-    //   .style("color", "white")
-    //   .style("fill-opacity", 0)
-    //   .style("fill", "white")
-    // 	.attr("text-anchor", "middle")
-    // 	.attr("dy", "1.5em")
-    // 	.attr("transform", function(d, i){return "translate(0, -10)"})
-    // 	.attr("x", function(d, i){return cfg.w/2*(1-cfg.factorLegend*Math.sin(d*cfg.radians/total))-60*Math.sin(d*cfg.radians/total);})
-    // 	.attr("y", function(d, i){return cfg.h/2*(1-Math.cos(d*cfg.radians/total))-20*Math.cos(d*cfg.radians/total);});
-
     d.forEach(function(y, x, arr){
       dataValues = [];
       g.selectAll(".nodes")

@@ -2,7 +2,6 @@
 
 angular.module('omniscientApp')
   .factory('$websocketService', ['$window', function($window) {
-    var topicName = 'inbound';
     var wsf = this.$get[1];
     var openInterval;
 
@@ -20,7 +19,8 @@ angular.module('omniscientApp')
         scope.socketAvailable = false;
       };
       socket.onmessage = function(message){
-        scope.$broadcast(topicName, angular.fromJson(message.data));
+        var channel = "inbound:" + message.channel;
+        scope.$broadcast(channel, angular.fromJson(message.data));
       };
 
       scope.$on("outbound", function(evt, data) {

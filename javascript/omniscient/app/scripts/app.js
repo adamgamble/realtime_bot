@@ -5,7 +5,8 @@ angular.module('omniscientApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngTouch'
+  'ngTouch',
+  'ngAnimate'
 ])
   .config(['$locationProvider', '$routeProvider', '$httpProvider', function ($locationProvider, $routeProvider, $httpProvider) {
     // $locationProvider.html5Mode(false);
