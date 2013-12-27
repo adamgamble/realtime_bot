@@ -19,9 +19,12 @@ angular.module('omniscientApp')
         scope.socketAvailable = false;
       };
       socket.onmessage = function(message){
-        console.log("new message", message);
-        var channel = "inbound:" + message.channel;
-        scope.$broadcast(channel, angular.fromJson(message.data));
+        console.log("raw message", message);
+        message = angular.fromJson(message.data);
+        console.log("coerced message", message);
+        var topic = "inbound:" + message.topic;
+        console.log("topic", topic);
+        scope.$broadcast(topic, angular.fromJson(message.data));
       };
 
       scope.$on("outbound", function(evt, data) {

@@ -6,6 +6,7 @@ angular.module('omniscientApp')
     $scope.lidarData = {};
 
     $scope.$on('inbound:lidar', function(evt, data){
+      console.log("controller lidar data", data);
       $scope.lidarData = data;
     });
 

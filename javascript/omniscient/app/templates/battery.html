@@ -1,5 +1,6 @@
 <i class="{{cssClass}}"></i>
 <h3>Battery {{type}}</h3>
 <aside>
-  <p>{{data}}</p>
+  <p data-ng-hide="data">Waiting ..</p>
+  <p data-ng-show="data">{{data}}v</p>
 </aside>
