@@ -6,11 +6,14 @@ angular.module('omniscientApp')
     $scope.lidarData = {};
 
     $scope.$on('inbound:lidar', function(evt, data){
-      console.log("controller lidar data", data);
-      $scope.lidarData = data;
+      $scope.$apply(function() {
+        $scope.lidarData = data;
+      });
     });
 
     $scope.$on('inbound:battery_voltage', function(evt, data){
-      $scope.batteryData = data;
+      $scope.$apply(function() {
+        $scope.batteryData = data;
+      });
     });
   }]);

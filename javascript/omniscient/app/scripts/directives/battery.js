@@ -5,11 +5,12 @@ angular.module('omniscientApp')
     return {
       templateUrl: 'templates/battery.html',
       restrict: 'E',
-      scope: {
+      scope: { 
         data: '=batteryData',
         type: '@batteryType',
         cssClass: '@batteryClass'
       },
-      link: function($scope, element, attrs) { }
+      link: function($scope, element, attrs) {
+      }
     };
   }]);
