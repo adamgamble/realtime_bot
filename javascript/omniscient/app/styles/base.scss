@@ -1,3 +1,18 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+.fade {
+  -webkit-transition:opacity linear 0.15s;
+  transition:opacity linear 0.15s;
+  opacity:1;
+}
+
+.fade.ng-hide-add,
+.fade.ng-hide-remove {
+  display:block!important;
+}
+
+.fade.ng-hide {
+  opacity:0;
+}

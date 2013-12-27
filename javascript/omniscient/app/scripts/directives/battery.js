@@ -11,6 +11,11 @@ angular.module('omniscientApp')
         cssClass: '@batteryClass'
       },
       link: function($scope, element, attrs) {
+        $scope.$watch("data", function(newValue, oldValue) {
+          if(newValue !== oldValue) {
+            angular.element("aside", element).addClass("dn-flip-y");
+          }
+        });
       }
     };
   }]);
