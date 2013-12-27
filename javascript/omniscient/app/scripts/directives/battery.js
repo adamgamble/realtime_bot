@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('omniscientApp')
-  .directive('batteryVoltage', ['$window', '$interval', '$timeout', function ($window, $interval, $timeout) {
+  .directive('battery', ['$window', '$interval', '$timeout', function ($window, $interval, $timeout) {
     return {
       templateUrl: 'templates/battery.html',
       restrict: 'E',
