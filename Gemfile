@@ -4,6 +4,7 @@ gem 'reel'
 gem 'celluloid'
 gem 'amqp'
 gem 'pry'
+gem 'compass'
 platforms :jruby do
   gem "jruby-serialport", :git => "git://github.com/pmukerji/jruby-serialport.git"
 end
